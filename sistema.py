@@ -1,3 +1,4 @@
+import sqlite3
 import customtkinter as ctk
 from tkinter import *
 
@@ -10,6 +11,42 @@ janela.geometry('500x500')
 janela.resizable(False, False)
 
 # -------------------------------------------------------------------------------------
+
+def reverse(tuples):
+    new_tup =tuples[::-1]
+    return new_tup
+
+def insert (nome,rg, cpf, data,servico,observacao):
+    conn=sqlite3.connect("data.db")
+    cursor=conn.cursor()
+    cursor.execute("""CREATE TABLE IF NOT EXISTS
+    cadastro(nome TEXT, rg TEXT, cpf, data, observacao TEXT, endereco TEXT)""")
+    cursor.execute("INSERT INTO cadastro VALUES('"+str(nome)+"','"+str(rg)+"','"+str(cpf)+"','"+str(data)+"','"+str(servico)+"', '"+str(observacao)+"')")
+    conn.commit()
+
+
+def delete(data):
+    conn=sqlite3.connect("data.db")
+    cursor=conn.cursor()
+    cursor.execute("""CREATE TABLE IF NOT EXISTS
+    cadastro(nome TEXT, rg TEXT, cpf, data, observacao TEXT, endereco TEXT)""")
+    cursor.execute("DELETE FROM cadastro WHERE nome='"+str(data)+"'")
+    conn.commit()
+
+
+def read():
+    conn=sqlite3.connect("data.db")
+    cursor=conn.cursor()
+    cursor.execute("""CREATE TABLE IF NOT EXISTS
+    cadastro(nome TEXT, rg TEXT, cpf, data, observacao TEXT, endereco TEXT)""")
+    cursor.execute("SELECT * FROM cadastro")
+    results=cursor.fetchall()
+    conn.commit()
+    return results
+
+
+
+
 # IMAGENS
 
 img = PhotoImage(file="background.png")
@@ -93,6 +130,21 @@ def abrir_janela():
     janela2.resizable(width=False, height=False)
     janela2.geometry('500x500')
     janela2.title('Cadastro de clientes')
+    
+    
+    
+    
+#def insert_data():
+    #itemNome=str(input_nome.get())
+    #itemRg=str(input_rg.get())
+    #itemCpf=str(input_cpf.get())
+    #itemEndereco=str(input_endereco.get())
+    #itemObservation=str(input_observation.get())
+    #itemData=str(input_data.get())
+    
+    
+    
+    
 
     place_nome = ctk.CTkLabel(janela2, text='Nome').place(x=50, y=20)
     input_nome = ctk.CTkEntry(
