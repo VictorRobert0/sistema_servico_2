@@ -35,6 +35,28 @@ cursor.execute('''
 
 
 #---------------------------------------------------
+#FUNÇÃO LOGIN
+
+def login_account():
+    username = username_entry2.get()
+    password = password_entry2.get()   
+    if username != '' and password != '':
+        cursor.execute('SELECT password FROM users WHERE username=?', [username])
+        result = cursor.fetchone()
+        if result:
+            if bcrypt.checkpw(password.encode('utf-8'), result[0]):
+                messagebox.showinfo('Sucesso', 'Login realizado com sucesso')
+            else:
+                messagebox.showerror('Erro', 'Senha inválida ;)')
+        else:
+            messagebox.showerror('Erro', 'Usuário inválido ;/')
+    else: 
+        messagebox.showerror('Erro', 'Preencha todos os campos')
+    
+
+
+
+
 #FUNÇÃO DE CADASTRO
 
 def signup():
@@ -80,10 +102,10 @@ def login():
     username_entry2 = ctk.CTkEntry(master=frame2, font=font2, text_color='#fff', fg_color='#001a2e', placeholder_text='Digite seu usuário...', width=200)
     username_entry2.place(relx=0.3 , rely= 0.3)
     
-    password_entry2 = ctk.CTkEntry(master=frame2, font=font2, text_color='#fff', fg_color='#001a2e', placeholder_text='Digite sua senha...', width=200)
+    password_entry2 = ctk.CTkEntry(master=frame2, font=font2, text_color='#fff', show=('*'),fg_color='#001a2e', placeholder_text='Digite sua senha...', width=200)
     password_entry2.place(relx=0.3, rely= 0.5)
     
-    login_button2= ctk.CTkButton(master=frame2,font=font2,text_color='#fff', text='Entrar', fg_color='#00965d', hover_color='#006e44', bg_color='#121111', cursor='hand2', corner_radius=5, width=200)
+    login_button2= ctk.CTkButton(master=frame2,command=login_account,font=font2,text_color='#fff', text='Entrar', fg_color='#00965d', hover_color='#006e44', bg_color='#121111', cursor='hand2', corner_radius=5, width=200)
     login_button2.place(relx=0.3,rely=0.8)
             
         
