@@ -12,39 +12,6 @@ janela.resizable(False, False)
 
 # -------------------------------------------------------------------------------------
 
-def reverse(tuples):
-    new_tup =tuples[::-1]
-    return new_tup
-
-def insert (nome,rg, cpf, data,servico,observacao):
-    conn=sqlite3.connect("data.db")
-    cursor=conn.cursor()
-    cursor.execute("""CREATE TABLE IF NOT EXISTS
-    cadastro(nome TEXT, rg TEXT, cpf, data, observacao TEXT, endereco TEXT)""")
-    cursor.execute("INSERT INTO cadastro VALUES('"+str(nome)+"','"+str(rg)+"','"+str(cpf)+"','"+str(data)+"','"+str(servico)+"', '"+str(observacao)+"')")
-    conn.commit()
-
-
-def delete(data):
-    conn=sqlite3.connect("data.db")
-    cursor=conn.cursor()
-    cursor.execute("""CREATE TABLE IF NOT EXISTS
-    cadastro(nome TEXT, rg TEXT, cpf, data, observacao TEXT, endereco TEXT)""")
-    cursor.execute("DELETE FROM cadastro WHERE nome='"+str(data)+"'")
-    conn.commit()
-
-
-def read():
-    conn=sqlite3.connect("data.db")
-    cursor=conn.cursor()
-    cursor.execute("""CREATE TABLE IF NOT EXISTS
-    cadastro(nome TEXT, rg TEXT, cpf, data, observacao TEXT, endereco TEXT)""")
-    cursor.execute("SELECT * FROM cadastro")
-    results=cursor.fetchall()
-    conn.commit()
-    return results
-
-
 
 
 # IMAGENS
@@ -73,8 +40,6 @@ def change_theme(self, nova_aparencia):
 # ---------------------------------------------------------------------------
 
 
-def cadastrar_cliente():
-    return print('Cadastro de clientes chegou')
 
 
 # --------------------------------------------------------------------------------
@@ -121,10 +86,20 @@ button_tela3 = ctk.CTkButton(
 
 # --------------------------------------------------------------------------------
 
+
+
+
+
+
+
+
+
+
 # TELA 2 | Cadastro
-
-
+    
 def abrir_janela():
+    
+    
 
     janela2 = ctk.CTkToplevel()
     janela2.resizable(width=False, height=False)
@@ -133,22 +108,14 @@ def abrir_janela():
     
     
     
-    
-#def insert_data():
-    #itemNome=str(input_nome.get())
-    #itemRg=str(input_rg.get())
-    #itemCpf=str(input_cpf.get())
-    #itemEndereco=str(input_endereco.get())
-    #itemObservation=str(input_observation.get())
-    #itemData=str(input_data.get())
-    
-    
+    def cadastrar_cliente():
+        print(f"Entered Value:{input_nome.get()}")
     
     
 
     place_nome = ctk.CTkLabel(janela2, text='Nome').place(x=50, y=20)
     input_nome = ctk.CTkEntry(
-        janela2, placeholder_text='Digite o nome do cliente').place(x=50, y=50)
+        master=janela2, placeholder_text='Digite o nome do cliente').place(x=50, y=50)
 
     place_rg = ctk.CTkLabel(janela2, text='RG').place(x=300, y=20)
     input_rg = ctk.CTkEntry(
@@ -172,8 +139,16 @@ def abrir_janela():
         janela2, placeholder_text='Digite a data').place(x=300, y=130)
 
     button_tela2 = ctk.CTkButton(
-        janela2, text='CADASTRAR', fg_color='#109010', hover_color='#245b3b', command=cadastrar_cliente).place(x=170, y=400)
+        janela2, text="Submit", fg_color='#109010', hover_color='#245b3b', command=cadastrar_cliente).place(x=170, y=400)
+    
+    
 
+     
+     
+     
+     
+     
+     
 # -----------------------------------------------------------------------------------
 # Botão abrir| Cadastro de cliente
 button_tela1 = ctk.CTkButton(
