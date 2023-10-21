@@ -32,8 +32,8 @@ cursor.execute('''
 
 # IMAGENS
 
-img = PhotoImage(file="background.png")
-label_img = ctk.CTkLabel(master=janela, image=img, text="").place(x=0, y=0)
+#img = PhotoImage(file=")
+#label_img = ctk.CTkLabel(master=janela, image=img, text="").place(x=0, y=0)
 
 # Funções
 # ---------------------------------------------------------------------------
