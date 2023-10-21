@@ -24,6 +24,18 @@ cursor.execute('''
 # ------------------------------------------------------------------------
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 #FUNÇÃO LOGIN
 
 def login_account():
@@ -41,12 +53,6 @@ def login_account():
             messagebox.showerror('Erro', 'Usuário inválido ;/')
     else: 
         messagebox.showerror('Erro', 'Preencha todos os campos')
-
-
-
-
-
-
 
 
 
@@ -143,14 +149,8 @@ def tela_cadastro():
     voltar_cadastro = ctk.CTkButton(framecadastro,text_color='#fff', text='ÁREA DE LOGIN', fg_color='#db152d', hover_color='#8f0b1b', bg_color='#12abb3', cursor='hand2', corner_radius=5, width=120, anchor=CENTER)
     voltar_cadastro.place(x=10, y=500)
    
-    
-    
-    
-    
-    
-    
-    
-     
+   
+                  
     
     
     
