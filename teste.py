@@ -1,5 +1,3 @@
-#PROJETO DE ESTUDO PARA INTEGRAR BANCO DE DADOS SQLITE3 NO APP EXE
-
 import customtkinter as ctk
 import sqlite3
 import bcrypt
@@ -13,7 +11,7 @@ app = ctk.CTk()
 app.title('Tela de cadastro')
 
 app.geometry('470x360')
-
+app.resizable(False,False)
 app.config(bg='#001220')
 
 font1 = ('Helvetica',25,'bold')
@@ -39,7 +37,7 @@ cursor.execute('''
 
 def login_account():
     username = username_entry2.get()
-    password = password_entry2.get()   
+    password = password_entry2.get()
     if username != '' and password != '':
         cursor.execute('SELECT password FROM users WHERE username=?', [username])
         result = cursor.fetchone()
@@ -52,6 +50,7 @@ def login_account():
             messagebox.showerror('Erro', 'Usuário inválido ;/')
     else: 
         messagebox.showerror('Erro', 'Preencha todos os campos')
+
     
 
 
@@ -153,15 +152,6 @@ login_label.place(relx=0.00,rely=0.93 )
 
 login_button = ctk.CTkButton(frame1,command=login ,font=font4, text_color='#00bf77', text='ENTRAR', fg_color='#001220', hover_color='#001220', cursor='hand2', corner_radius=5,width=40,height=1)
 login_button.place(relx=0.88,rely=0.95)
-
-
-
-
-
-
-
-
-
 
 
 

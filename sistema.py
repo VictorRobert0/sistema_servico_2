@@ -10,9 +10,25 @@ janela.title('Área de serviço')
 janela.geometry('500x500')
 janela.resizable(False, False)
 
-# -------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------------------
+#Conexão com banco de dados sqLITE3
 
+conn = sqlite3.connect('data.db')
+cursor = conn.cursor()
 
+cursor.execute(''' 
+               CREATE TABLE IF NOT EXISTS users (
+                   username TEXT NOT NULL,
+                   rg TEXT NOT NULL,
+                   cpf TEXT NOT NULL,
+                   data TEXT NOT NULL,
+                   endereco TEXT NOT NULL,
+                   observacao TEXT NOT NULL
+                   )''')
+#---------------------------------------------------
+
+#---------------------------------------------------
 
 # IMAGENS
 
@@ -20,23 +36,6 @@ img = PhotoImage(file="background.png")
 label_img = ctk.CTkLabel(master=janela, image=img, text="").place(x=0, y=0)
 
 # Funções
-
-
-def cadastrar_servico():
-    return print('Cadastro de serviços chegou')
-
-
-# TEMA---------------------------------------------------------------------------
-def appearance(self):
-    self.lb_apm = ctk.CTkLabel(self, text="Tema", bg_color="transparent", text_color=[
-                               '#000', "#fff"]).place(x=50, y=150)
-    self.opt_apm = ctk.CTkOptionMenu(
-        self, values=["Dark", "Light"], command=self.change_apm).place(x=50, y=200)
-
-
-def change_theme(self, nova_aparencia):
-    ctk.set_appearance_mode(nova_aparencia)
-
 # ---------------------------------------------------------------------------
 
 
@@ -93,8 +92,6 @@ button_tela3 = ctk.CTkButton(
 
 
 
-
-
 # TELA 2 | Cadastro
     
 def abrir_janela():
@@ -106,12 +103,8 @@ def abrir_janela():
     janela2.geometry('500x500')
     janela2.title('Cadastro de clientes')
     
-    
-    
-    def cadastrar_cliente():
-        print(f"Entered Value:{input_nome.get()}")
-    
-    
+
+
 
     place_nome = ctk.CTkLabel(janela2, text='Nome').place(x=50, y=20)
     input_nome = ctk.CTkEntry(
