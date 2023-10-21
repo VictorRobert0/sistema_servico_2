@@ -20,8 +20,26 @@ cursor.execute('''
                    password TEXT NOT NULL )''')
 # ------------------------------------------------------------------------
 
-# TELA DE CADASTRO DE USUARIO
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# TELA DE CADASTRO DE USUARIO
 
 def tela_cadastro():
     framelogin.destroy()
@@ -39,10 +57,49 @@ def tela_cadastro():
         master=root, width=350, height=700, bg_color='#12abb3', text='')
     framecadastro.place(relx=0.637, rely=0.0)
 
-    username_cadastro = ctk.CTkEntry(framecadastro, placeholder_text='Usuário',placeholder_text_color='#fff',text_color='white', fg_color='#12abb3', border_color='#fff', border_width=2, bg_color='#12abb3')
+    # ------------------------------------------------------------------------
+    
+    username_cadastro = ctk.CTkEntry(framecadastro, placeholder_text='Usuário',placeholder_text_color='#fff',text_color='white', fg_color='#12abb3', border_color='#fff', border_width=2, bg_color='#12abb3', width=200)
     username_cadastro.place(x=60, y=60)
-# ------------------------------------------------------------------------
+    
+    # ------------------------------------------------------------------------
+    
+    email_cadastro = ctk.CTkEntry(framecadastro, placeholder_text='Email',placeholder_text_color='#fff',text_color='white', fg_color='#12abb3', border_color='#fff', border_width=2, bg_color='#12abb3', width=200)
+    email_cadastro.place(x=60, y=100)
+    
+    # ------------------------------------------------------------------------
+    
+    rg_cadastro = ctk.CTkEntry(framecadastro, placeholder_text='RG',placeholder_text_color='#fff',text_color='white', fg_color='#12abb3', border_color='#fff', border_width=2, bg_color='#12abb3', width=200)
+    rg_cadastro.place(x=60, y=140)
+    
+    # ------------------------------------------------------------------------
+    
+    
+    password_cadastro = ctk.CTkEntry(framecadastro, placeholder_text='Senha',placeholder_text_color='#fff',text_color='white', fg_color='#12abb3', border_color='#fff', border_width=2, bg_color='#12abb3', width=200)
+    password_cadastro.place(x=60, y=180)
+    
+    
+    # ------------------------------------------------------------------------
+    #BOTÃO CADASTRAR-SE
 
+    validar_cadastro = ctk.CTkButton(framecadastro,text_color='#fff', text='CADASTRAR-SE', fg_color='#00965d', hover_color='#006e44', bg_color='#12abb3', cursor='hand2', corner_radius=5, width=120, anchor=CENTER)
+    validar_cadastro.place(x=90,y=230)
+# ------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+    voltar_cadastro = ctk.CTkButton(framecadastro,text_color='#fff', text='ÁREA DE LOGIN', fg_color='#db152d', hover_color='#8f0b1b', bg_color='#12abb3', cursor='hand2', corner_radius=5, width=120, anchor=CENTER)
+    voltar_cadastro.place(x=10, y=500)
+   
+    
+    
+    
+    
+    
+    
+    
+     
+    
+    
+    
 
 # ------------------------------------------------------------------------
 # FRAME DE LOGIN PRINCIPAL

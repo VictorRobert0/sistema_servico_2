@@ -22,7 +22,7 @@ font4 = ('Arial', 13,'bold')
 #----------------------------------------------------------------------------------------------------------
 #Conexão com banco de dados sqLITE3
 
-conn = sqlite3.connect('data.db')
+conn = sqlite3.connect('./database/datateste.db')
 cursor = conn.cursor()
 
 cursor.execute(''' 
@@ -83,7 +83,7 @@ def login():
     frame2 = ctk.CTkFrame(master=app, bg_color='#001220', fg_color='#001220',width=470,height=360)
     frame2.place(x=0,y=0)
     
-    image1= PhotoImage(file='background.png')
+    image1= PhotoImage(file='./img/background.png')
     image1_label = Label(frame2, image=image1)
     image1_label.place(x=0,y=0)
     frame2.image1 = image1
@@ -120,9 +120,9 @@ def login():
 frame1 = ctk.CTkFrame(master=app, bg_color='#001220', fg_color='#001220',width=470,height=360)
 frame1.place(x=0,y=0)
 
-#image1= PhotoImage(file="")
-#image1_label = Label(frame1, image=image1, bg='#001220')
-#image1_label.place(x=0,y=0)
+image1= PhotoImage(file="./img/background.png")
+image1_label = Label(frame1, image=image1, bg='#001220')
+image1_label.place(x=0,y=0)
 #----------------------------------------------------------------------------------------------------------
 
 signup_label = ctk.CTkLabel(frame1, font=font1, text='Cadastrar-se', text_color='#fff', bg_color='#001220')
