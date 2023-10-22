@@ -24,36 +24,34 @@ cursor.execute('''
 # ------------------------------------------------------------------------
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-#FUNÇÃO LOGIN
+# FUNÇÃO LOGIN
 
 def login_account():
     username = username_entry.get()
     password = password_entry.get()
     if username != '' and password != '':
-        cursor.execute('SELECT password FROM users WHERE username=?', [username])
+        cursor.execute(
+            'SELECT password FROM users WHERE username=?', [username])
         result = cursor.fetchone()
         if result:
             if bcrypt.checkpw(password.encode('utf-8'), result[0]):
                 messagebox.showinfo('Sucesso', 'Login realizado com sucesso')
+                sistema = Toplevel(root)
+                sistema.title('SISTEMA LOGISTICA')
+                sistema.geometry('1000x1000')
+                
+                Label(siste, text='AGORA FALTA CONFIGURAR AQUI').pack(expand=True)
+                
+                sistema.mainloop()
             else:
                 messagebox.showerror('Erro', 'Senha inválida ;)')
         else:
             messagebox.showerror('Erro', 'Usuário inválido ;/')
-    else: 
+    else:
         messagebox.showerror('Erro', 'Preencha todos os campos')
 
+# ------------------------------------------------------------------------
+# FUNÇÃO CADASTRO
 
 
 def validar_formulario():
@@ -61,39 +59,27 @@ def validar_formulario():
     email = email_cadastro.get()
     rg = rg_cadastro.get()
     password = password_cadastro.get()
-    
-    
+
     if username != '' and email != '' and password != '' and rg != '':
-        cursor.execute('SELECT  username FROM users WHERE username=?', [username])
+        cursor.execute(
+            'SELECT  username FROM users WHERE username=?', [username])
         if cursor.fetchone() is not None:
             messagebox.showerror('Erro', 'Usuário já existe.')
         else:
             encoded_password = password.encode('utf-8')
             hashed_password = bcrypt.hashpw(encoded_password, bcrypt.gensalt())
             print(hashed_password)
-            cursor.execute ('INSERT INTO users VALUES (?,?,?,?)', [username, email ,rg, hashed_password])
+            cursor.execute('INSERT INTO users VALUES (?,?,?,?)', [
+                           username, email, rg, hashed_password])
             conn.commit()
             messagebox.showinfo('Sucesso', 'Conta criada com sucesso ;)')
     else:
         messagebox.showerror('Erro', 'Por favor, insira todos os dados.')
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ # ------------------------------------------------------------------------
 
 
 # TELA DE CADASTRO DE USUARIO
+
 
 def tela_cadastro():
     framelogin.destroy()
@@ -115,45 +101,45 @@ def tela_cadastro():
     global email_cadastro
     global rg_cadastro
     global password_cadastro
-    
+
     # ------------------------------------------------------------------------
-    
-    username_cadastro = ctk.CTkEntry(framecadastro, placeholder_text='Usuário',placeholder_text_color='#fff',text_color='white', fg_color='#12abb3', border_color='#fff', border_width=2, bg_color='#12abb3', width=200)
+
+    username_cadastro = ctk.CTkEntry(framecadastro, placeholder_text='Usuário', placeholder_text_color='#fff',
+                                     text_color='white', fg_color='#12abb3', border_color='#fff', border_width=2, bg_color='#12abb3', width=200)
     username_cadastro.place(x=60, y=60)
     username_cadastro.focus()
-    
-    # ------------------------------------------------------------------------
-    
-    email_cadastro = ctk.CTkEntry(framecadastro, placeholder_text='Email',placeholder_text_color='#fff',text_color='white', fg_color='#12abb3', border_color='#fff', border_width=2, bg_color='#12abb3', width=200)
-    email_cadastro.place(x=60, y=100)
-    
-    # ------------------------------------------------------------------------
-    
-    rg_cadastro = ctk.CTkEntry(framecadastro, placeholder_text='RG',placeholder_text_color='#fff',text_color='white', fg_color='#12abb3', border_color='#fff', border_width=2, bg_color='#12abb3', width=200)
-    rg_cadastro.place(x=60, y=140)
-    
-    # ------------------------------------------------------------------------
-    
-    
-    password_cadastro = ctk.CTkEntry(framecadastro, show='*' ,placeholder_text='Senha',placeholder_text_color='#fff',text_color='white', fg_color='#12abb3', border_color='#fff', border_width=2, bg_color='#12abb3', width=200)
-    password_cadastro.place(x=60, y=180)
-    
-    
-    # ------------------------------------------------------------------------
-    #BOTÃO CADASTRAR-SE
 
-    validar_cadastro = ctk.CTkButton(framecadastro,command=validar_formulario,text_color='#fff', text='CADASTRAR-SE', fg_color='#00965d', hover_color='#006e44', bg_color='#12abb3', cursor='hand2', corner_radius=5, width=120, anchor=CENTER)
-    validar_cadastro.place(x=90,y=230)
+    # ------------------------------------------------------------------------
+
+    email_cadastro = ctk.CTkEntry(framecadastro, placeholder_text='Email', placeholder_text_color='#fff',
+                                  text_color='white', fg_color='#12abb3', border_color='#fff', border_width=2, bg_color='#12abb3', width=200)
+    email_cadastro.place(x=60, y=100)
+
+    # ------------------------------------------------------------------------
+
+    rg_cadastro = ctk.CTkEntry(framecadastro, placeholder_text='RG', placeholder_text_color='#fff', text_color='white',
+                               fg_color='#12abb3', border_color='#fff', border_width=2, bg_color='#12abb3', width=200)
+    rg_cadastro.place(x=60, y=140)
+
+    # ------------------------------------------------------------------------
+
+    password_cadastro = ctk.CTkEntry(framecadastro, show='*', placeholder_text='Senha', placeholder_text_color='#fff',
+                                     text_color='white', fg_color='#12abb3', border_color='#fff', border_width=2, bg_color='#12abb3', width=200)
+    password_cadastro.place(x=60, y=180)
+
+    # ------------------------------------------------------------------------
+    # BOTÃO CADASTRAR-SE
+
+    validar_cadastro = ctk.CTkButton(framecadastro, command=validar_formulario, text_color='#fff', text='CADASTRAR-SE',
+                                     fg_color='#00965d', hover_color='#006e44', bg_color='#12abb3', cursor='hand2', corner_radius=5, width=120, anchor=CENTER)
+    validar_cadastro.place(x=90, y=230)
 # ------------------------------------------------------------------------
 # ------------------------------------------------------------------------
-    voltar_cadastro = ctk.CTkButton(framecadastro,text_color='#fff', text='ÁREA DE LOGIN', fg_color='#db152d', hover_color='#8f0b1b', bg_color='#12abb3', cursor='hand2', corner_radius=5, width=120, anchor=CENTER)
-    voltar_cadastro.place(x=10, y=500)
-   
-   
-                  
-    
-    
-    
+# BOTÃO AREA DE LOGIN
+    voltar_cadastro = ctk.CTkButton(framecadastro, text_color='#fff', text='ÁREA DE LOGIN', fg_color='#B0E0E6',
+                                    hover_color='#87CEFA', bg_color='#12abb3', cursor='hand2', corner_radius=5, width=350, anchor=CENTER, command=lambda: controller.show_frame(framelogin))
+    voltar_cadastro.place(x=1, y=500)
+
 
 # ------------------------------------------------------------------------
 # FRAME DE LOGIN PRINCIPAL
@@ -168,15 +154,15 @@ global password_entry
 # inputs área de login
 
 username_entry = ctk.CTkEntry(
-    master=root,placeholder_text='Digite seu usuário', border_color='white', width=300, height=50)
+    master=root, placeholder_text='Digite seu usuário', border_color='white', width=300, height=50)
 username_entry.place(relx=0.31, rely=0.39)
 username_entry.focus()
 
 password_entry = ctk.CTkEntry(
-    master=root, show='*',placeholder_text='Digite sua senha', border_color='white', width=300, height=50)
+    master=root, show='*', placeholder_text='Digite sua senha', border_color='white', width=300, height=50)
 password_entry.place(relx=0.31, rely=0.5)
 
-signup_button = ctk.CTkButton(master=root,command=login_account ,text='CONECTAR', text_color='#fff',
+signup_button = ctk.CTkButton(master=root, command=login_account, text='CONECTAR', text_color='#fff',
                               width=130, cursor='hand2', fg_color='#808080', hover_color='#858a80')
 signup_button.place(relx=0.39, rely=0.63)
 # ------------------------------------------------------------------------
