@@ -23,8 +23,39 @@ cursor.execute('''
                    password TEXT NOT NULL )''')
 # ------------------------------------------------------------------------
 
-
-# FUNÇÃO LOGIN
+# ------------------------------------------------------------------------
+#INTERFACE DO SISTEMA
+def sistema_on():
+    
+    sistema = ctk.CTk()
+    sistema.geometry('1920x1080')
+    sistema.title('SISTEMA DE LOGISTICA')
+    
+    framesistema = ctk.CTkFrame (master=sistema, width=1000, height=1000)
+    text = ctk.CTkLabel(master=sistema,text='TESTE', text_color='white')
+    text.place(x=60,y=80)
+    
+    # IMAGEM DE FUNDO
+    imagem_sistema = PhotoImage(file='./img/fundo-cadastro.png')
+    sistema_label = Label(sistema, image=imagem_sistema)
+    sistema_label.place(x=0, y=0)
+    framesistema.imagem_sistema = imagem_sistema
+    framesistema.place(x=0, y=0)
+    
+   
+    
+    
+    
+    
+    
+    
+    sistema.mainloop()
+    
+    
+    
+# ------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+# VALIDAÇÃO LOGIN E ACESSO A SISTEMA
 
 def login_account():
     username = username_entry.get()
@@ -36,24 +67,23 @@ def login_account():
         if result:
             if bcrypt.checkpw(password.encode('utf-8'), result[0]):
                 messagebox.showinfo('Sucesso', 'Login realizado com sucesso')
-                sistema = Toplevel(root)
-                sistema.title('SISTEMA LOGISTICA')
-                sistema.geometry('1000x1000')
+                return sistema_on()
                 
-                Label(siste, text='AGORA FALTA CONFIGURAR AQUI').pack(expand=True)
-                
-                sistema.mainloop()
             else:
                 messagebox.showerror('Erro', 'Senha inválida ;)')
         else:
             messagebox.showerror('Erro', 'Usuário inválido ;/')
     else:
         messagebox.showerror('Erro', 'Preencha todos os campos')
+# ------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+
+
+
 
 # ------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 # FUNÇÃO CADASTRO
-
-
 def validar_formulario():
     username = username_cadastro.get()
     email = email_cadastro.get()
@@ -73,24 +103,29 @@ def validar_formulario():
                            username, email, rg, hashed_password])
             conn.commit()
             messagebox.showinfo('Sucesso', 'Conta criada com sucesso ;)')
+            return framelogin()
+
     else:
         messagebox.showerror('Erro', 'Por favor, insira todos os dados.')
- # ------------------------------------------------------------------------
-
+#------------------------------------------------------------------------
+#------------------------------------------------------------------------
+def voltar_page():
+    print('Não consegui fazer funcionar ainda ')
 
 # TELA DE CADASTRO DE USUARIO
 
 
 def tela_cadastro():
+    global framecadastro
     framelogin.destroy()
     framecadastro = ctk.CTkFrame(master=root, width=1000, height=1000)
-    framecadastro.place(x=0, y=0)
-
     # IMAGEM DE FUNDO
     imagem_cadastro = PhotoImage(file='./img/fundo-cadastro.png')
     image_label = Label(framecadastro, image=imagem_cadastro)
     image_label.place(x=0, y=0)
     framecadastro.imagem_cadastro = imagem_cadastro
+    framecadastro.place(x=0, y=0)
+
 # ------------------------------------------------------------------------
     # FRAME DE CADASTRO PRINCIPAL
     framecadastro = ctk.CTkLabel(
@@ -128,23 +163,31 @@ def tela_cadastro():
     password_cadastro.place(x=60, y=180)
 
     # ------------------------------------------------------------------------
+    
+    
+    
     # BOTÃO CADASTRAR-SE
 
     validar_cadastro = ctk.CTkButton(framecadastro, command=validar_formulario, text_color='#fff', text='CADASTRAR-SE',
                                      fg_color='#00965d', hover_color='#006e44', bg_color='#12abb3', cursor='hand2', corner_radius=5, width=120, anchor=CENTER)
     validar_cadastro.place(x=90, y=230)
+    
+    
 # ------------------------------------------------------------------------
 # ------------------------------------------------------------------------
+
+
 # BOTÃO AREA DE LOGIN
-    voltar_cadastro = ctk.CTkButton(framecadastro, text_color='#fff', text='ÁREA DE LOGIN', fg_color='#B0E0E6',
-                                    hover_color='#87CEFA', bg_color='#12abb3', cursor='hand2', corner_radius=5, width=350, anchor=CENTER, command=lambda: controller.show_frame(framelogin))
+    voltar_cadastro = ctk.CTkButton(framecadastro, text_color='#fff', text='ÁREA DE LOGIN', fg_color='#B0E0E6', hover_color='#87CEFA',
+                                    bg_color='#12abb3', cursor='hand2', corner_radius=5, width=350, anchor=CENTER, command=voltar_page)
     voltar_cadastro.place(x=1, y=500)
 
 
 # ------------------------------------------------------------------------
+
 # FRAME DE LOGIN PRINCIPAL
-framelogin = ctk.CTkFrame(master=root, width=700, height=400)
-framelogin.place(relx=0.114, rely=0.17)
+framelogin = ctk.CTkFrame(master=root, width=1000, height=1000)
+framelogin.place(relx=0.0, rely=0.0)
 
 
 global username_entry
@@ -167,9 +210,10 @@ signup_button = ctk.CTkButton(master=root, command=login_account, text='CONECTAR
 signup_button.place(relx=0.39, rely=0.63)
 # ------------------------------------------------------------------------
 # botão para tela de cadastro
-cadastro_button = ctk.CTkButton(framelogin, command=tela_cadastro, text_color='white', text='Realizar cadastro',
-                                cursor='hand2', width=90, height=30, fg_color='#808080', hover_color='#858a80')
-cadastro_button.place(x=586, y=370)
+
+cadastro_button = ctk.CTkButton(framelogin, command=tela_cadastro, text='CADASTRAR FUNCIONÁRIO',
+                                fg_color='#808080', cursor='hand2', width=40, hover_color='#858a80')
+cadastro_button.place(x=725, y=570)
 
 # ------------------------------------------------------------------------
 
