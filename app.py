@@ -86,7 +86,7 @@ def sistema_on():
 # selecionar os serviços
 
     select_services = ctk.CTkComboBox(master=sistema, values=[
-                                      "Orçamento", "Revisão completa", "Troca de pastilhas"], width=180)
+                                      "Orçamento", "Revisão completa", "Troca de pastilhas"], width=180, justify=CENTER)
     select_services.place(relx=0.5, rely=0.5, anchor=CENTER)
 # --------------------------------------------------------------------------------
 
@@ -95,7 +95,7 @@ def sistema_on():
     global services_input
 # Inputs e posicionamento
 
-    select_users = ctk.CTkComboBox(master=sistema, values=[username], width=500)
+    select_users = ctk.CTkComboBox(master=sistema, values=[username], width=500, justify=CENTER)
     
     
     select_users.place(relx=0.5, rely=0.2, anchor=CENTER)
