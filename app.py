@@ -5,12 +5,37 @@ from tkinter import *
 from tkinter import messagebox
 
 root = ctk.CTk()
+root.title('SISTEMA LOGISTICA - LOGIN')
 root.resizable(False, False)
 root.geometry('900x600')
 root.config(bg='#FAF0E6')
+root._set_appearance_mode('Dark')
 
 # ------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 # Conexão com banco de dados sqLITE3
+
+
+#Tabela de servicos
+
+conn = sqlite3.connect('./database/database.db')
+cursor = conn.cursor()
+
+cursor.execute(''' 
+               CREATE TABLE IF NOT EXISTS servicos (
+                   servico TEXT NOT NULL
+                   )''')
+
+
+#-------------------------------------------------------------------------
+#Tabela de Users
 
 conn = sqlite3.connect('./database/database.db')
 cursor = conn.cursor()
@@ -23,26 +48,71 @@ cursor.execute('''
                    password TEXT NOT NULL )''')
 # ------------------------------------------------------------------------
 
+
+
+def validar_servico():
+    service = services_input.get()
+    
+
+    if service != '':
+        cursor.execute(
+            'SELECT  servico FROM servicos WHERE servico=?', [service])
+        if cursor.fetchone() is not None:
+            messagebox.showerror('Erro', 'Serviço já existe.')
+        else:
+
+            cursor.execute('INSERT INTO servicos VALUES (?)', [
+                           service])
+            conn.commit()
+            messagebox.showinfo('Sucesso', 'Serviço criado com sucesso ;)')
+
+    else:
+        messagebox.showerror('Erro', 'Por favor, preencha os dados.') 
+     
+    
 # ------------------------------------------------------------------------
+
 #INTERFACE DO SISTEMA
 def sistema_on():
     
     sistema = ctk.CTk()
-    sistema.geometry('1920x1080')
+    sistema.geometry('900x600')
     sistema.title('SISTEMA DE LOGISTICA')
     
-    framesistema = ctk.CTkFrame (master=sistema, width=1000, height=1000)
-    text = ctk.CTkLabel(master=sistema,text='TESTE', text_color='white')
-    text.place(x=60,y=80)
+    sistema.resizable(False, False)
     
-    # IMAGEM DE FUNDO
-    imagem_sistema = PhotoImage(file='./img/fundo-cadastro.png')
-    sistema_label = Label(sistema, image=imagem_sistema)
-    sistema_label.place(x=0, y=0)
-    framesistema.imagem_sistema = imagem_sistema
-    framesistema.place(x=0, y=0)
+    titulo = ctk.CTkLabel(
+        master=sistema, text="Área de cadastro de serviços", text_color='#fff')
+    titulo.place(relx=0.5, rely=0.03, anchor=CENTER)
+    button_tela3 = ctk.CTkButton(master= sistema , text='CADASTRAR SERVIÇO', fg_color='#109010', hover_color='#245b3b', command=validar_servico)
+    button_tela3.place(relx=0.5, rely=0.9)
+
+# selecionar os serviços
+
+    select_services = ctk.CTkComboBox(master=sistema, values=[
+                                      "Orçamento", "Revisão completa", "Troca de pastilhas"], width=180)
+    select_services.place(relx=0.5, rely=0.5, anchor=CENTER)
+# --------------------------------------------------------------------------------
+
+
+# --------------------------------------------------------------------------------
+    global services_input
+# Inputs e posicionamento
+
+    select_users = ctk.CTkComboBox(master=sistema, values=[username], width=500)
     
-   
+    
+    select_users.place(relx=0.5, rely=0.2, anchor=CENTER)
+
+    services_input = ctk.CTkEntry(master=sistema,width=600, height=100)
+    services_input.place(relx=0.5, rely=0.7, anchor=CENTER)
+
+# Labels e posicionamento
+    label_users = ctk.CTkLabel(
+        master=sistema, text="Selecione o cliente").place(relx=0.5, rely=0.13, anchor= CENTER)
+    
+    
+
     
     
     
@@ -58,6 +128,7 @@ def sistema_on():
 # VALIDAÇÃO LOGIN E ACESSO A SISTEMA
 
 def login_account():
+    global username
     username = username_entry.get()
     password = password_entry.get()
     if username != '' and password != '':
@@ -103,7 +174,6 @@ def validar_formulario():
                            username, email, rg, hashed_password])
             conn.commit()
             messagebox.showinfo('Sucesso', 'Conta criada com sucesso ;)')
-            return framelogin()
 
     else:
         messagebox.showerror('Erro', 'Por favor, insira todos os dados.')
@@ -219,3 +289,4 @@ cadastro_button.place(x=725, y=570)
 
 
 root.mainloop()
+
