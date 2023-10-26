@@ -9,12 +9,9 @@ root.title('SISTEMA LOGISTICA - LOGIN')
 root.resizable(False, False)
 root.geometry('900x600')
 root.config(bg='#FAF0E6')
-root._set_appearance_mode('Dark')
+root._set_appearance_mode("Dark")
 
 # ------------------------------------------------------------------------
-
-
-
 
 
 
@@ -48,7 +45,7 @@ cursor.execute('''
                    password TEXT NOT NULL )''')
 # ------------------------------------------------------------------------
 
-
+#VALIDANDO O INPUT DO SERVIÇO
 
 def validar_servico():
     service = services_input.get()
@@ -61,8 +58,7 @@ def validar_servico():
             messagebox.showerror('Erro', 'Serviço já existe.')
         else:
 
-            cursor.execute('INSERT INTO servicos VALUES (?)', [
-                           service])
+            cursor.execute('INSERT INTO servicos VALUES (?)', [service])
             conn.commit()
             messagebox.showinfo('Sucesso', 'Serviço criado com sucesso ;)')
 
@@ -85,7 +81,7 @@ def sistema_on():
         master=sistema, text="Área de cadastro de serviços", text_color='#fff')
     titulo.place(relx=0.5, rely=0.03, anchor=CENTER)
     button_tela3 = ctk.CTkButton(master= sistema , text='CADASTRAR SERVIÇO', fg_color='#109010', hover_color='#245b3b', command=validar_servico)
-    button_tela3.place(relx=0.5, rely=0.9)
+    button_tela3.place(relx=0.5, rely=0.9, anchor=CENTER)
 
 # selecionar os serviços
 
@@ -108,13 +104,11 @@ def sistema_on():
     services_input.place(relx=0.5, rely=0.7, anchor=CENTER)
 
 # Labels e posicionamento
-    label_users = ctk.CTkLabel(
-        master=sistema, text="Selecione o cliente").place(relx=0.5, rely=0.13, anchor= CENTER)
+    label_users = ctk.CTkLabel(master=sistema,text="ATENDENTE")
+    label_users.place(relx=0.5, rely=0.13, anchor= CENTER)
     
     
 
-    
-    
     
     
     
@@ -180,7 +174,9 @@ def validar_formulario():
 #------------------------------------------------------------------------
 #------------------------------------------------------------------------
 def voltar_page():
-    print('Não consegui fazer funcionar ainda ')
+    framecadastro1.destroy()
+    framecadastro.destroy()
+    
 
 # TELA DE CADASTRO DE USUARIO
 
@@ -197,10 +193,12 @@ def tela_cadastro():
     framecadastro.place(x=0, y=0)
 
 # ------------------------------------------------------------------------
+    global framecadastro1
+#-------------------------------------------------------------------------
     # FRAME DE CADASTRO PRINCIPAL
-    framecadastro = ctk.CTkLabel(
+    framecadastro1 = ctk.CTkLabel(
         master=root, width=350, height=700, bg_color='#12abb3', text='')
-    framecadastro.place(relx=0.637, rely=0.0)
+    framecadastro1.place(relx=0.637, rely=0.0)
 
     global username_cadastro
     global email_cadastro
@@ -209,26 +207,26 @@ def tela_cadastro():
 
     # ------------------------------------------------------------------------
 
-    username_cadastro = ctk.CTkEntry(framecadastro, placeholder_text='Usuário', placeholder_text_color='#fff',
+    username_cadastro = ctk.CTkEntry(framecadastro1, placeholder_text='Usuário', placeholder_text_color='#fff',
                                      text_color='white', fg_color='#12abb3', border_color='#fff', border_width=2, bg_color='#12abb3', width=200)
     username_cadastro.place(x=60, y=60)
     username_cadastro.focus()
 
     # ------------------------------------------------------------------------
 
-    email_cadastro = ctk.CTkEntry(framecadastro, placeholder_text='Email', placeholder_text_color='#fff',
+    email_cadastro = ctk.CTkEntry(framecadastro1, placeholder_text='Email', placeholder_text_color='#fff',
                                   text_color='white', fg_color='#12abb3', border_color='#fff', border_width=2, bg_color='#12abb3', width=200)
     email_cadastro.place(x=60, y=100)
 
     # ------------------------------------------------------------------------
 
-    rg_cadastro = ctk.CTkEntry(framecadastro, placeholder_text='RG', placeholder_text_color='#fff', text_color='white',
+    rg_cadastro = ctk.CTkEntry(framecadastro1, placeholder_text='RG', placeholder_text_color='#fff', text_color='white',
                                fg_color='#12abb3', border_color='#fff', border_width=2, bg_color='#12abb3', width=200)
     rg_cadastro.place(x=60, y=140)
 
     # ------------------------------------------------------------------------
 
-    password_cadastro = ctk.CTkEntry(framecadastro, show='*', placeholder_text='Senha', placeholder_text_color='#fff',
+    password_cadastro = ctk.CTkEntry(framecadastro1, show='*', placeholder_text='Senha', placeholder_text_color='#fff',
                                      text_color='white', fg_color='#12abb3', border_color='#fff', border_width=2, bg_color='#12abb3', width=200)
     password_cadastro.place(x=60, y=180)
 
@@ -238,7 +236,7 @@ def tela_cadastro():
     
     # BOTÃO CADASTRAR-SE
 
-    validar_cadastro = ctk.CTkButton(framecadastro, command=validar_formulario, text_color='#fff', text='CADASTRAR-SE',
+    validar_cadastro = ctk.CTkButton(framecadastro1, command=validar_formulario, text_color='#fff', text='CADASTRAR-SE',
                                      fg_color='#00965d', hover_color='#006e44', bg_color='#12abb3', cursor='hand2', corner_radius=5, width=120, anchor=CENTER)
     validar_cadastro.place(x=90, y=230)
     
@@ -248,7 +246,7 @@ def tela_cadastro():
 
 
 # BOTÃO AREA DE LOGIN
-    voltar_cadastro = ctk.CTkButton(framecadastro, text_color='#fff', text='ÁREA DE LOGIN', fg_color='#B0E0E6', hover_color='#87CEFA',
+    voltar_cadastro = ctk.CTkButton(framecadastro1, text_color='#fff', text='ÁREA DE LOGIN', fg_color='#B0E0E6', hover_color='#87CEFA',
                                     bg_color='#12abb3', cursor='hand2', corner_radius=5, width=350, anchor=CENTER, command=voltar_page)
     voltar_cadastro.place(x=1, y=500)
 
