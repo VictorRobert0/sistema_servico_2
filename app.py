@@ -248,7 +248,7 @@ def tela_cadastro():
 # BOTÃO AREA DE LOGIN
     voltar_cadastro = ctk.CTkButton(framecadastro1, text_color='#fff', text='ÁREA DE LOGIN', fg_color='#808080', hover_color='#4F4F4F',
                                     bg_color='#c3c3c3', cursor='hand2', corner_radius=5, width=350, anchor=CENTER, command=voltar_page)
-    voltar_cadastro.place(x=1, y=500)
+    voltar_cadastro.place(x=0, y=500)
 
 
 # ------------------------------------------------------------------------
