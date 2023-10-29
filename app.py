@@ -182,15 +182,15 @@ def voltar_page():
 
 
 def tela_cadastro():
-    
+
     global framecadastro
     framelogin.destroy()
     framecadastro = ctk.CTkFrame(master=root, width=1000, height=1000)
     # IMAGEM DE FUNDO
     imagem_cadastro = PhotoImage(file='./img/Devices-amico.png')
     image_label = Label(framecadastro, image=imagem_cadastro,
-                        width=1000, height=900)
-    image_label.place(x=-100, y=-70)
+                        width=655, height=700)
+    image_label.place(x=-85, y=-100)
     framecadastro.imagem_cadastro = imagem_cadastro
     framecadastro.place(x=0, y=0)
 
@@ -199,7 +199,7 @@ def tela_cadastro():
 # -------------------------------------------------------------------------
     # FRAME DE CADASTRO PRINCIPAL
     framecadastro1 = ctk.CTkLabel(
-        master=root, width=350, height=700, bg_color='#c3c3c3', text='')
+        master=root, width=350, height=700, bg_color='#DCDCDC', text='')
     framecadastro1.place(relx=0.637, rely=0.0)
 
     global username_cadastro
@@ -246,7 +246,7 @@ def tela_cadastro():
 
 
 # BOTÃO AREA DE LOGIN
-    voltar_cadastro = ctk.CTkButton(framecadastro1, text_color='#fff', text='ÁREA DE LOGIN', fg_color='#B0E0E6', hover_color='#87CEFA',
+    voltar_cadastro = ctk.CTkButton(framecadastro1, text_color='#fff', text='ÁREA DE LOGIN', fg_color='#808080', hover_color='#4F4F4F',
                                     bg_color='#c3c3c3', cursor='hand2', corner_radius=5, width=350, anchor=CENTER, command=voltar_page)
     voltar_cadastro.place(x=1, y=500)
 
