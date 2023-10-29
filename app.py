@@ -209,27 +209,27 @@ def tela_cadastro():
 
     # ------------------------------------------------------------------------
 
-    username_cadastro = ctk.CTkEntry(framecadastro1, placeholder_text='Usuário', placeholder_text_color='#fff',
-                                     text_color='white', fg_color='#DCDCDC', border_color='#000', border_width=2, bg_color='#DCDCDC', width=200)
+    username_cadastro = ctk.CTkEntry(framecadastro1, placeholder_text='Usuário', placeholder_text_color='#C0C0C0',
+                                     text_color='white', fg_color='#F0F8FF', border_color='#778899', border_width=2, bg_color='#DCDCDC', width=200)
     username_cadastro.place(x=60, y=60)
     username_cadastro.focus()
 
     # ------------------------------------------------------------------------
 
-    email_cadastro = ctk.CTkEntry(framecadastro1, placeholder_text='Email', placeholder_text_color='#fff',
-                                  text_color='white', fg_color='#DCDCDC', border_color='#000', border_width=2, bg_color='#DCDCDC', width=200)
+    email_cadastro = ctk.CTkEntry(framecadastro1, placeholder_text='Email', placeholder_text_color='#C0C0C0',
+                                  text_color='white', fg_color='#F0F8FF', border_color='#778899', border_width=2, bg_color='#DCDCDC', width=200)
     email_cadastro.place(x=60, y=100)
 
     # ------------------------------------------------------------------------
 
-    rg_cadastro = ctk.CTkEntry(framecadastro1, placeholder_text='RG', placeholder_text_color='#fff', text_color='white',
-                               fg_color='#DCDCDC', border_color='#000', border_width=2, bg_color='#DCDCDC', width=200)
+    rg_cadastro = ctk.CTkEntry(framecadastro1, placeholder_text='RG', placeholder_text_color='#C0C0C0', text_color='white',
+                               fg_color='#F0F8FF', border_color='#778899', border_width=2, bg_color='#DCDCDC', width=200)
     rg_cadastro.place(x=60, y=140)
 
     # ------------------------------------------------------------------------
 
-    password_cadastro = ctk.CTkEntry(framecadastro1, show='*', placeholder_text='Senha', placeholder_text_color='#fff',
-                                     text_color='white', fg_color='#DCDCDC', border_color='#000', border_width=2, bg_color='#DCDCDC', width=200)
+    password_cadastro = ctk.CTkEntry(framecadastro1, show='*', placeholder_text='Senha', placeholder_text_color='#C0C0C0',
+                                     text_color='white', fg_color='#F0F8FF', border_color='#778899', border_width=2, bg_color='#DCDCDC', width=200)
     password_cadastro.place(x=60, y=180)
 
     # ------------------------------------------------------------------------
@@ -237,7 +237,7 @@ def tela_cadastro():
     # BOTÃO CADASTRAR-SE
 
     validar_cadastro = ctk.CTkButton(framecadastro1, command=validar_formulario, text_color='#fff', text='CADASTRAR-SE',
-                                     fg_color='#00965d', hover_color='#006e44', bg_color='#c3c3c3', cursor='hand2', corner_radius=5, width=120, anchor=CENTER)
+                                     fg_color='#778899', hover_color='#A020F0', bg_color='#DCDCDC', cursor='hand2', corner_radius=5, width=120, anchor=CENTER)
     validar_cadastro.place(x=90, y=230)
 
 
@@ -246,8 +246,8 @@ def tela_cadastro():
 
 
 # BOTÃO AREA DE LOGIN
-    voltar_cadastro = ctk.CTkButton(framecadastro1, text_color='#fff', text='ÁREA DE LOGIN', fg_color='#808080', hover_color='#4F4F4F',
-                                    bg_color='#c3c3c3', cursor='hand2', corner_radius=5, width=350, anchor=CENTER, command=voltar_page)
+    voltar_cadastro = ctk.CTkButton(framecadastro1, text_color='#fff', text='ÁREA DE LOGIN', fg_color='#778899', hover_color='#A020F0',
+                                    bg_color='#F0F8FF', cursor='hand2', corner_radius=5, width=350, anchor=CENTER, command=voltar_page)
     voltar_cadastro.place(x=0, y=500)
 
 
