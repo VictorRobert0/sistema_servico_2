@@ -182,6 +182,7 @@ def voltar_page():
 
 
 def tela_cadastro():
+    
     global framecadastro
     framelogin.destroy()
     framecadastro = ctk.CTkFrame(master=root, width=1000, height=1000)
@@ -260,7 +261,7 @@ framelogin.place(relx=0.0, rely=0.0)
 # IMAGEM LOGIN
 
 imagem_login = PhotoImage(file='./img/JavaScript frameworks-amico.png')
-image_lframe = Label(framelogin, image=imagem_login, width=900, height=600)
+image_lframe = Label(root, image=imagem_login, width=900, height=600)
 framelogin.imagem_imagem_login = imagem_login
 image_lframe.place(x=0, y=0)
 framelogin.place(x=0, y=0)
@@ -288,7 +289,7 @@ signup_button.place(relx=0.39, rely=0.63)
 # ------------------------------------------------------------------------
 # botão para tela de cadastro
 
-cadastro_button = ctk.CTkButton(framelogin, command=tela_cadastro, text='CADASTRAR FUNCIONÁRIO',
+cadastro_button = ctk.CTkButton(root, command=tela_cadastro, text='CADASTRAR FUNCIONÁRIO',
                                 fg_color='#808080', cursor='hand2', width=40, hover_color='#858a80', bg_color="#d3d3d3")
 cadastro_button.place(x=725, y=570)
 
