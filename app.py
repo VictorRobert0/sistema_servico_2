@@ -195,26 +195,26 @@ def tela_cadastro():
     # ------------------------------------------------------------------------
 
     username_cadastro = ctk.CTkEntry(framecadastro1, placeholder_text='Usuário', placeholder_text_color='#C0C0C0',
-                                     text_color='white', fg_color='#F0F8FF', border_color='#000', border_width=2, bg_color='#fff', width=200)
+                                     text_color='black', fg_color='#F0F8FF', border_color='#000', border_width=2, bg_color='#fff', width=200)
     username_cadastro.place(x=60, y=60)
     username_cadastro.focus()
 
     # ------------------------------------------------------------------------
 
     email_cadastro = ctk.CTkEntry(framecadastro1, placeholder_text='Email', placeholder_text_color='#C0C0C0',
-                                  text_color='white', fg_color='#F0F8FF', border_color='#000', border_width=2, bg_color='#fff', width=200)
+                                  text_color='black', fg_color='#F0F8FF', border_color='#000', border_width=2, bg_color='#fff', width=200)
     email_cadastro.place(x=60, y=100)
 
     # ------------------------------------------------------------------------
 
-    rg_cadastro = ctk.CTkEntry(framecadastro1, placeholder_text='RG', placeholder_text_color='#C0C0C0', text_color='white',
+    rg_cadastro = ctk.CTkEntry(framecadastro1, placeholder_text='RG', placeholder_text_color='#C0C0C0', text_color='black',
                                fg_color='#F0F8FF', border_color='#000', border_width=2, bg_color='#fff', width=200)
     rg_cadastro.place(x=60, y=140)
 
     # ------------------------------------------------------------------------
 
     password_cadastro = ctk.CTkEntry(framecadastro1, show='*', placeholder_text='Senha', placeholder_text_color='#C0C0C0',
-                                     text_color='white', fg_color='#F0F8FF', border_color='#000', border_width=2, bg_color='#fff', width=200)
+                                     text_color='black', fg_color='#F0F8FF', border_color='#000', border_width=2, bg_color='#fff', width=200)
     password_cadastro.place(x=60, y=180)
 
     # ------------------------------------------------------------------------
